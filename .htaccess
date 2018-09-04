@@ -1,0 +1,14 @@
+RewriteEngine on	
+RewriteBase /
+RewriteRule  ^$ /home/index.php
+
+RewriteCond %{HTTP_HOST} www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Cate
+RewriteRule ^c([0-9]*)/([^/]*)$ /home/cate.php?catid=$1&%{QUERY_STRING} [NE,L]
+
+# News
+RewriteRule ^([^/]*)/([^/]*)-c([0-9]*)\.html$ /home/detail.php?newid=$3
+RewriteRule ^([^/]*)-c([0-9]*)\.html$ /home/detail.php?newid=$2
+#Options All -Indexes
